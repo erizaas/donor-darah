@@ -174,7 +174,7 @@
     fetch('delete/'+$data_id, {
     method: 'POST',
     body: bodyContent});
-    document.location.reload();
+    window.location='/dashboard';
     } else {
     swal.fire({
     title: 'This action has been cancelled!',

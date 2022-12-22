@@ -95,7 +95,7 @@
                     <input name="cc" type="number" id="form-kantong" class="form-control" placeholder="0" value="{{$blood['cc']}}">
                   </div>
 
-                  <button class="btn btn-secondary" type="button" style="font-family: 'Roboto', sans-serif;" onclick="window.location='/dashboard';">
+                  <button class="btn btn-secondary" type="button" style="font-family: 'Roboto', sans-serif;" onclick="w'/dashboard';indow.location=">
                     BACK
                   </button>
                   <button class="btn btn-primary" type="submit" style="font-family: 'Roboto', sans-serif;">
