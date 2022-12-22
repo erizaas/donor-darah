@@ -21,7 +21,7 @@
 
                   @csrf
                   @method('PATCH')
-                  @if ($errors->any())
+                  {{-- @if ($errors->any())
                     <div class="alert alert-danger">
                       <ul>
                     @foreach ($errors->all() as $error)
@@ -29,10 +29,11 @@
                     @endforeach
                       </ul>
                     </div>
-                  @endif
+                  @endif --}}
 
                 {{-- Golongan darah --}}
                 <label class="form-label font-italic">Golongan Darah</label>
+
                 <div class="d-flex">
                   {{-- Golongan darah A --}}
                   <div class="form-check" style="margin-right: 15px">
@@ -53,11 +54,14 @@
                   </div>
 
                   {{-- Golongan darah O --}}
-                  <div class="form-check mb-4">
+                  <div class="form-check mb-2">
                       <input name="blood" value="O" class="form-check-input" type="radio" name="flexRadioDefault" id="golForm4">
                       <label class="form-check-label" for="golForm4">O</label>
                   </div>
                 </div>
+                @error('blood')
+                  <div class="alert alert-danger mt-2">{{ $message }}</div>
+                @enderror
 
                   {{-- Input Nik --}}
                   <div class="row mb-4">
@@ -65,6 +69,9 @@
                       <div class="form-outline">
                         <label class="form-label" for="form-nik">NIK</label>
                         <input name="nik" type="number" id="form-nik" class="form-control" placeholder="Masukan Nik" value="{{$blood['nik']}}">
+                        @error('nik')
+                          <div class="alert alert-danger mt-2">{{ $message }}</div>
+                        @enderror
                       </div>
                     </div>
 
@@ -73,6 +80,9 @@
                       <div class="form-outline">
                         <label class="form-label" for="form-age">Age</label>
                         <input name="age" type="number" id="form-age" class="form-control" placeholder="Masukan Umur" value="{{$blood['age']}}">
+                        @error('age')
+                          <div class="alert alert-danger mt-2">{{ $message }}</div>
+                        @enderror
                       </div>
                     </div>
                   </div>
@@ -81,21 +91,30 @@
                   <div class="form-outline mb-4">
                     <label class="form-label" for="form-name">Full name</label>
                     <input name="name" type="text" id="form-name" class="form-control" placeholder="Masukan Nama" value="{{$blood['name']}}">
+                    @error('name')
+                      <div class="alert alert-danger mt-2">{{ $message }}</div>
+                    @enderror
                   </div>
 
                   {{-- Input Address --}}
                   <div class="form-outline mb-4">
                     <label class="form-label" for="form-address">Address</label>
                     <input name="address" type="text" id="form-address" class="form-control" placeholder="Masukan Alamat" value="{{$blood['address']}}">
+                    @error('address')
+                      <div class="alert alert-danger mt-2">{{ $message }}</div>
+                    @enderror
                   </div>
 
                   {{-- Input Address --}}
                   <div class="form-outline mb-4">
                     <label class="form-label" for="form-kantong">Total Kantong</label>
                     <input name="cc" type="number" id="form-kantong" class="form-control" placeholder="0" value="{{$blood['cc']}}">
+                    @error('cc')
+                      <div class="alert alert-danger mt-2">{{ $message }}</div>
+                    @enderror
                   </div>
 
-                  <button class="btn btn-secondary" type="button" style="font-family: 'Roboto', sans-serif;" onclick="w'/dashboard';indow.location=">
+                  <button class="btn btn-secondary" type="button" style="font-family: 'Roboto', sans-serif;" onclick="window.location='/dashboard';">
                     BACK
                   </button>
                   <button class="btn btn-primary" type="submit" style="font-family: 'Roboto', sans-serif;">

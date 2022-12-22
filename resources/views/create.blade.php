@@ -27,6 +27,9 @@
                       <div class="form-outline">
                         <label class="form-label" for="form-nik">NIK</label>
                         <input name="nik" type="number" id="form-nik" class="form-control" placeholder="Masukan Nik">
+                        @error('nik')
+                          <div class="alert alert-danger mt-2">{{ $message }}</div>
+                        @enderror
                       </div>
                     </div>
 
@@ -35,6 +38,9 @@
                       <div class="form-outline">
                         <label class="form-label" for="form-age">Age</label>
                         <input name="age" type="number" id="form-age" class="form-control" placeholder="Masukan Umur">
+                        @error('age')
+                          <div class="alert alert-danger mt-2">{{ $message }}</div>
+                        @enderror
                       </div>
                     </div>
                   </div>
@@ -43,12 +49,18 @@
                   <div class="form-outline mb-4">
                     <label class="form-label" for="form-name">Full name</label>
                     <input name="name" type="text" id="form-name" class="form-control" placeholder="Masukan Nama">
+                    @error('name')
+                      <div class="alert alert-danger mt-2">{{ $message }}</div>
+                    @enderror
                   </div>
 
                   {{-- Input Address --}}
                   <div class="form-outline mb-4">
                     <label class="form-label" for="form-address">Address</label>
                     <input name="address" type="text" id="form-address" class="form-control" placeholder="Masukan Alamat">
+                    @error('address')
+                      <div class="alert alert-danger mt-2">{{ $message }}</div>
+                    @enderror
                   </div>
 
                   {{-- <hr class="my-4"> --}}
