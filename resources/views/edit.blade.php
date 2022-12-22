@@ -64,7 +64,7 @@
                     <div class="col">
                       <div class="form-outline">
                         <label class="form-label" for="form-nik">NIK</label>
-                        <input name="nik" type="number" id="form-nik" class="form-control" placeholder="1210xxxx" value="{{$blood['nik']}}">
+                        <input name="nik" type="number" id="form-nik" class="form-control" placeholder="Masukan Nik" value="{{$blood['nik']}}">
                       </div>
                     </div>
 

@@ -7,11 +7,36 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     {{-- <link href="{{asset('assets/css/material-dashboard.css')}}" rel="stylesheet" /> --}}
     <style>
+        @media(min-width: 665px){
+            .grid-container {
+                display: grid;
+                grid-template-columns: auto auto auto auto;
+                background-color: white;
+            }
+        }
 
-        .grid-container {
-          display: grid;
-          grid-template-columns: auto auto auto auto;
-          background-color: white;
+        @media(min-width: 503px) {
+            #nav-mobile{
+                display: none;
+            }
+        }
+
+        @media(max-width: 502px){
+            #nav-desktop{
+                display: none;
+            }
+        }
+
+        @media(min-width: 430px){
+            #new-donation1{
+                display: none;
+            }
+        }
+
+        @media(max-width: 430px){
+            #new-donation2{
+                display: none;
+            }
         }
 
         .grid-container > div {
@@ -25,12 +50,19 @@
 @extends('layout')
 @section('content')
     {{-- Navbar --}}
-    <nav class="navbar navbar-expand-lg bg-light m-5">
+    <nav id="nav-desktop" class="navbar navbar-expand-lg bg-light m-5">
         <div class="container">
             <label class="nav-link text-black" style="font-family: 'Roboto', sans-serif; font-size:20px;">Blood Donation <a style="font-family: 'Roboto', sans-serif; font-size:10px; color:gray">{{$blood->count()}} Total</a></label>
             <div class="card">
                 <a class="nav-link btn btn-primary" href="/create">New Donation</a>
             </div>
+        </div>
+    </nav>
+    <nav id="nav-mobile" class="navbar bg-light">
+        <div class="container">
+            <label class="nav-link text-black" style="font-family: 'Roboto', sans-serif; font-size:20px;">Blood Donation <a style="font-family: 'Roboto', sans-serif; font-size:10px; color:gray">{{$blood->count()}} Total</a></label>
+            <a id="new-donation1" class="nav-link btn btn-primary fa-sharp fa-solid fa-plus ml-2" href="/create"></a>
+            <a id="new-donation2" class="nav-link btn btn-primary" href="/create">New Donation</a>
         </div>
     </nav>
     {{-- Donors --}}
@@ -119,6 +151,8 @@
             </div>
         </div>
     </section>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <script>
     function deletedata($data_id){
     var token = document.querySelector('meta[name="csrf-token"]').content;
@@ -127,11 +161,29 @@
     bodyContent.append("_token", token);
     bodyContent.append("_method", "DELETE");
 
+    Swal.fire({
+    title: 'Are you sure?',
+    text: "You won't be able to revert this!",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes, delete it!'
+    }).then((willDelete) => {
+    if (willDelete.value) {
     fetch('delete/'+$data_id, {
     method: 'POST',
-    body: bodyContent
-    });
+    body: bodyContent});
     document.location.reload();
-    };
+    } else {
+    swal.fire({
+    title: 'This action has been cancelled!',
+    // text: "Your data is safe!",
+    // text: "This action has been cancelled!",
+    icon: 'success',
+    OKButtonColor: '#d33',
+    showOKButton: true,
+    });
+    }})};
 </script>
 @endsection
